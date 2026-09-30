@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Avance de calculadora de prestaciones laborales"
+    >
+
+    <title>Calculadora de Prestaciones Laborales</title>
+
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+    <header class="encabezado">
+        <div class="encabezado-contenido">
+            <div>
+                <p class="etiqueta">
+                    Derecho Empresarial e Informático
+                </p>
+
+                <h1>Calculadora de Prestaciones Laborales</h1>
+
+                <p class="descripcion">
+                    Herramienta para calcular horas extra, días de descanso
+                    semanal y días de asueto laborados.
+                </p>
+            </div>
+
+            <div class="distintivo">
+                Avance del proyecto
+            </div>
+        </div>
+    </header>
+
+    <main class="contenedor">
+
+        <section class="mensaje-informativo">
+            <div class="icono-informativo">i</div>
+
+            <div>
+                <h2>Indicaciones</h2>
+
+                <p>
+                    Complete la información del trabajador y seleccione
+                    únicamente los cálculos que correspondan. Los campos
+                    marcados con asterisco (*) son obligatorios.
+                </p>
+            </div>
+        </section>
+
+        <form id="formulario-calculadora" novalidate>
+
+            <section class="tarjeta">
+                <div class="titulo-seccion">
+                    <span class="numero-seccion">1</span>
+
+                    <div>
+                        <h2>Información general</h2>
+
+                        <p>
+                            Ingrese los datos generales del trabajador
+                            y de la empresa.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cuadricula-formulario">
+
+                    <div class="grupo-campo campo-completo">
+                        <label for="nombre-trabajador">
+                            Nombre completo del trabajador *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombre-trabajador"
+                            placeholder="Ejemplo: Carlos Antonio Martínez López"
+                            autocomplete="name"
+                        >
+
+                        <small
+                            class="mensaje-error"
+                            id="error-nombre"
+                        ></small>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="nombre-empresa">
+                            Nombre de la empresa *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombre-empresa"
+                            placeholder="Ejemplo: Empresa Salvadoreña, S.A. de C.V."
+                        >
+
+                        <small
+                            class="mensaje-error"
+                            id="error-empresa"
+                        ></small>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="cargo-trabajador">
+                            Cargo del trabajador *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="cargo-trabajador"
+                            placeholder="Ejemplo: Auxiliar administrativo"
+                        >
+
+                        <small
+                            class="mensaje-error"
+                            id="error-cargo"
+                        ></small>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="salario-mensual">
+                            Salario básico mensual *
+                        </label>
+
+                        <div class="campo-dinero">
+                            <span>$</span>
+
+                            <input
+                                type="number"
+                                id="salario-mensual"
+                                placeholder="0.00"
+                                min="0.01"
+                                step="0.01"
+                            >
+                        </div>
+
+                        <small
+                            class="mensaje-error"
+                            id="error-salario"
+                        ></small>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="fecha-ingreso">
+                            Fecha de ingreso *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="fecha-ingreso"
+                        >
+
+                        <small
+                            class="mensaje-error"
+                            id="error-fecha-ingreso"
+                        ></small>
+                    </div>
+
+                    <div class="grupo-campo">
+                        <label for="fecha-finalizacion">
+                            Fecha de finalización *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="fecha-finalizacion"
+                        >
+
+                        <small
+                            class="mensaje-error"
+                            id="error-fecha-finalizacion"
+                        ></small>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="tarjeta">
+                <div class="titulo-seccion">
+                    <span class="numero-seccion">2</span>
+
+                    <div>
+                        <h2>Horas extra</h2>
+
+                        <p>
+                            Ingrese las horas extra diurnas y nocturnas
+                            realizadas por el trabajador.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cuadricula-calculos">
+
+                    <article class="opcion-calculo">
+                        <div class="encabezado-opcion">
+                            <div>
+                                <h3>Horas extra diurnas</h3>
+
+                                <p>
+                                    Horas trabajadas fuera de la jornada
+                                    ordinaria en horario diurno.
+                                </p>
+                            </div>
+
+                            <label class="interruptor">
+                                <input
+                                    type="checkbox"
+                                    id="no-aplica-diurnas"
+                                >
+
+                                <span class="control-interruptor"></span>
+                                <span>No aplica</span>
+                            </label>
+                        </div>
+
+                        <div
+                            class="contenido-opcion"
+                            id="contenido-diurnas"
+                        >
+                            <div class="grupo-campo">
+                                <label for="horas-diurnas">
+                                    Cantidad de horas
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="horas-diurnas"
+                                    placeholder="0"
+                                    min="0"
+                                    step="0.01"
+                                >
+
+                                <small
+                                    class="mensaje-error"
+                                    id="error-horas-diurnas"
+                                ></small>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="opcion-calculo">
+                        <div class="encabezado-opcion">
+                            <div>
+                                <h3>Horas extra nocturnas</h3>
+
+                                <p>
+                                    Horas trabajadas fuera de la jornada
+                                    ordinaria en horario nocturno.
+                                </p>
+                            </div>
+
+                            <label class="interruptor">
+                                <input
+                                    type="checkbox"
+                                    id="no-aplica-nocturnas"
+                                >
+
+                                <span class="control-interruptor"></span>
+                                <span>No aplica</span>
+                            </label>
+                        </div>
+
+                        <div
+                            class="contenido-opcion"
+                            id="contenido-nocturnas"
+                        >
+                            <div class="grupo-campo">
+                                <label for="horas-nocturnas">
+                                    Cantidad de horas
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="horas-nocturnas"
+                                    placeholder="0"
+                                    min="0"
+                                    step="0.01"
+                                >
+
+                                <small
+                                    class="mensaje-error"
+                                    id="error-horas-nocturnas"
+                                ></small>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <section class="tarjeta">
+                <div class="titulo-seccion">
+                    <span class="numero-seccion">3</span>
+
+                    <div>
+                        <h2>Días especiales laborados</h2>
+
+                        <p>
+                            Ingrese los días de descanso semanal y asueto
+                            laborados por el trabajador.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cuadricula-calculos">
+
+                    <article class="opcion-calculo">
+                        <div class="encabezado-opcion">
+                            <div>
+                                <h3>Día de descanso semanal</h3>
+
+                                <p>
+                                    Días en los que el trabajador laboró
+                                    durante su descanso semanal.
+                                </p>
+                            </div>
+
+                            <label class="interruptor">
+                                <input
+                                    type="checkbox"
+                                    id="no-aplica-descanso"
+                                >
+
+                                <span class="control-interruptor"></span>
+                                <span>No aplica</span>
+                            </label>
+                        </div>
+
+                        <div
+                            class="contenido-opcion"
+                            id="contenido-descanso"
+                        >
+                            <div class="grupo-campo">
+                                <label for="dias-descanso">
+                                    Cantidad de días
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="dias-descanso"
+                                    placeholder="0"
+                                    min="0"
+                                    step="1"
+                                >
+
+                                <small
+                                    class="mensaje-error"
+                                    id="error-dias-descanso"
+                                ></small>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="opcion-calculo">
+                        <div class="encabezado-opcion">
+                            <div>
+                                <h3>Día de asueto</h3>
+
+                                <p>
+                                    Días de asueto remunerado que fueron
+                                    laborados por el trabajador.
+                                </p>
+                            </div>
+
+                            <label class="interruptor">
+                                <input
+                                    type="checkbox"
+                                    id="no-aplica-asueto"
+                                >
+
+                                <span class="control-interruptor"></span>
+                                <span>No aplica</span>
+                            </label>
+                        </div>
+
+                        <div
+                            class="contenido-opcion"
+                            id="contenido-asueto"
+                        >
+                            <div class="grupo-campo">
+                                <label for="dias-asueto">
+                                    Cantidad de días
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="dias-asueto"
+                                    placeholder="0"
+                                    min="0"
+                                    step="1"
+                                >
+
+                                <small
+                                    class="mensaje-error"
+                                    id="error-dias-asueto"
+                                ></small>
+                            </div>
+
+                            <div class="grupo-seleccion">
+                                <p>
+                                    ¿El asueto coincidió con un día
+                                    de descanso semanal?
+                                </p>
+
+                                <div class="opciones-radio">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="coincidencia"
+                                            value="no"
+                                            checked
+                                        >
+                                        No
+                                    </label>
+
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="coincidencia"
+                                            value="si"
+                                        >
+                                        Sí
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div
+                    class="advertencia-coincidencia"
+                    id="advertencia-coincidencia"
+                    hidden
+                >
+                    <strong>Importante:</strong>
+
+                    Los días que coincidan como asueto y descanso semanal
+                    no serán calculados dos veces. Para esos días se aplicará
+                    únicamente el cálculo correspondiente al asueto.
+                </div>
+            </section>
+
+            <section class="acciones-formulario">
+                <button
+                    type="button"
+                    id="boton-limpiar"
+                    class="boton boton-secundario"
+                >
+                    Limpiar formulario
+                </button>
+
+                <button
+                    type="submit"
+                    class="boton boton-principal"
+                >
+                    Calcular prestaciones
+                </button>
+            </section>
+
+        </form>
+
+        <section
+            class="tarjeta seccion-resultados"
+            id="seccion-resultados"
+            hidden
+        >
+            <div class="titulo-seccion">
+                <span class="numero-seccion">4</span>
+
+                <div>
+                    <h2>Resultados del cálculo</h2>
+
+                    <p>
+                        Resumen de los valores obtenidos para el trabajador.
+                    </p>
+                </div>
+            </div>
+
+            <div class="resumen-trabajador">
+                <div>
+                    <span>Trabajador</span>
+                    <strong id="resultado-nombre"></strong>
+                </div>
+
+                <div>
+                    <span>Empresa</span>
+                    <strong id="resultado-empresa"></strong>
+                </div>
+
+                <div>
+                    <span>Cargo</span>
+                    <strong id="resultado-cargo"></strong>
+                </div>
+
+                <div>
+                    <span>Periodo laboral</span>
+                    <strong id="resultado-periodo"></strong>
+                </div>
+            </div>
+
+            <div class="resultados-basicos">
+                <article class="resultado-destacado">
+                    <span>Salario básico mensual</span>
+                    <strong id="resultado-salario-mensual">$0.00</strong>
+                </article>
+
+                <article class="resultado-destacado">
+                    <span>Salario básico diario</span>
+                    <strong id="resultado-salario-diario">$0.00</strong>
+                </article>
+
+                <article class="resultado-destacado">
+                    <span>Valor de la hora ordinaria</span>
+                    <strong id="resultado-hora-ordinaria">$0.00</strong>
+                </article>
+            </div>
+
+            <div class="tabla-contenedor">
+                <table class="tabla-resultados">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Cantidad</th>
+                            <th>Valor unitario</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Horas extra diurnas</td>
+                            <td id="cantidad-diurnas">No aplica</td>
+                            <td id="valor-diurna">$0.00</td>
+                            <td id="total-diurnas">$0.00</td>
+                        </tr>
+
+                        <tr>
+                            <td>Horas extra nocturnas</td>
+                            <td id="cantidad-nocturnas">No aplica</td>
+                            <td id="valor-nocturna">$0.00</td>
+                            <td id="total-nocturnas">$0.00</td>
+                        </tr>
+
+                        <tr>
+                            <td>Descanso semanal laborado</td>
+                            <td id="cantidad-descanso">No aplica</td>
+                            <td id="valor-descanso">$0.00</td>
+                            <td id="total-descanso">$0.00</td>
+                        </tr>
+
+                        <tr>
+                            <td>Asueto laborado</td>
+                            <td id="cantidad-asueto">No aplica</td>
+                            <td id="valor-asueto">$0.00</td>
+                            <td id="total-asueto">$0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div
+                class="detalle-coincidencia"
+                id="detalle-coincidencia"
+                hidden
+            ></div>
+
+            <div class="total-general">
+                <div>
+                    <span>Total de prestaciones calculadas</span>
+
+                    <small>
+                        Incluye únicamente los conceptos correspondientes
+                        al avance del proyecto.
+                    </small>
+                </div>
+
+                <strong id="resultado-total-general">$0.00</strong>
+            </div>
+
+            <div
+                class="nota-compensatoria"
+                id="nota-compensatoria"
+                hidden
+            >
+                <strong>Observación:</strong>
+
+                Además del pago correspondiente, debe considerarse
+                el día compensatorio por haber laborado durante
+                el descanso semanal.
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="pie-pagina">
+        <p>Proyecto académico de Derecho Empresarial e Informático</p>
+        <p>Avance de calculadora de prestaciones laborales</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
